@@ -6,15 +6,15 @@ package com.tsekhmeistruk.crypto.models
 
 interface IUserDataSource {
 
-    fun wasUserAsked(): Boolean?
+    fun wasUserAsked(): Boolean
 
-    fun setUserAcknowledged()
-
-    fun isPasswordSet(): Boolean?
-
-    fun setProtected()
+    fun setIfUserWasAsked()
 
     fun setPassword(password: String)
 
     fun getPassword(): String?
+
+    fun setPasswordHint(hint: String)
+
+    fun getPasswordHint(): String?
 }

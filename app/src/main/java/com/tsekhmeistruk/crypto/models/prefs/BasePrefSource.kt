@@ -32,7 +32,7 @@ abstract class BasePrefSource(sharedPreferences: SharedPreferences) {
     }
 
     @Synchronized
-    fun getBooleanPreference(name: String, def: Boolean): Boolean? {
+    fun getBooleanPreference(name: String, def: Boolean): Boolean {
         return mSharedPreferences.getBoolean(name, def)
     }
 

@@ -7,19 +7,11 @@ import com.tsekhmeistruk.crypto.models.IUserDataSource
  * Created by Roman Tsekhmeistruk on 05.01.2018.
  */
 
-class UserDataSource(sharedPreferences: SharedPreferences) : IUserDataSource, BasePrefSource(sharedPreferences) {
+class UserDataSource(sharedPreferences: SharedPreferences) : BasePrefSource(sharedPreferences), IUserDataSource {
 
-    private val mIsPasswordSet = "IS_PASSWORD_SET"
     private val mPassword = "PASSWORD"
-    private val mWasUserAcknowledged = "ACKNOWLEDGED"
-
-    override fun isPasswordSet(): Boolean? {
-        return getBooleanPreference(mIsPasswordSet, false)
-    }
-
-    override fun setProtected() {
-        setBooleanPreference(mIsPasswordSet, true)
-    }
+    private val mWasUserAsked = "WAS_USER_ASKED"
+    private val mHint = "HINT"
 
     override fun setPassword(password: String) {
         setStringPreference(mPassword, password)
@@ -29,11 +21,19 @@ class UserDataSource(sharedPreferences: SharedPreferences) : IUserDataSource, Ba
         return getStringPreference(mPassword)
     }
 
-    override fun setUserAcknowledged() {
-        setBooleanPreference(mWasUserAcknowledged, true)
+    override fun setIfUserWasAsked() {
+        setBooleanPreference(mWasUserAsked, true)
     }
 
-    override fun wasUserAsked(): Boolean? {
-        return getBooleanPreference(mWasUserAcknowledged)
+    override fun wasUserAsked(): Boolean {
+        return getBooleanPreference(mWasUserAsked, false)
+    }
+
+    override fun setPasswordHint(hint: String) {
+        setStringPreference(mHint, hint)
+    }
+
+    override fun getPasswordHint(): String? {
+        return getStringPreference(mHint)
     }
 }
