@@ -15,7 +15,7 @@ interface CoinsDao {
     @Query("select * from coins")
     fun getAllCoins(): Flowable<List<CoinDto>>
 
-    @Query("select * from coins where id = :p0")
+    @Query("select * from coins where id = :id")
     fun findCoinById(id: String): Flowable<CoinDto>
 
     @Insert(onConflict = REPLACE)
