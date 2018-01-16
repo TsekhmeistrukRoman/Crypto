@@ -19,7 +19,7 @@ interface CoinsDao {
     fun findCoinById(id: String): Flowable<CoinDto>
 
     @Insert(onConflict = REPLACE)
-    fun insertCoin(coinDto: CoinDto)
+    fun insertCoin(coinDto: CoinDto): Flowable<CoinDto>
 
     @Update(onConflict = REPLACE)
     fun updateCoin(coinDto: CoinDto)

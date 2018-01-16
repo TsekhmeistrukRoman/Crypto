@@ -1,6 +1,6 @@
 package com.tsekhmeistruk.crypto.di.module
 
-import com.tsekhmeistruk.crypto.common.BASE_API_URL
+import com.tsekhmeistruk.crypto.common.baseApiUrl
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -19,7 +19,7 @@ class DataModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(BASE_API_URL)
+                .baseUrl(baseApiUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
